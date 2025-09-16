@@ -8,6 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/customers")
@@ -31,10 +34,14 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<CustomerDTO> insertCustomer (@Validated @RequestBody CustomerDTO dto){
         dto = customerService.insert(dto);
-        return ResponseEntity.ok(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(dto.getId())
+                .toUri();
+        return ResponseEntity.created(uri).body(dto);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<CustomerDTO> update(@PathVariable Long id,@Validated @RequestBody CustomerDTO dto){
         dto = customerService.update(id, dto);
         return ResponseEntity.ok(dto);
@@ -45,4 +52,5 @@ public class CustomerController {
         customerService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 }

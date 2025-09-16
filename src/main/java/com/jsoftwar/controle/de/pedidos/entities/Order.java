@@ -27,6 +27,12 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
+    public void calculateTotalValue() {
+        this.totalValue = items.stream()
+                .map(item -> item.getUnitaryPrice().multiply(BigDecimal.valueOf(item.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
     public Order(){
 
     }

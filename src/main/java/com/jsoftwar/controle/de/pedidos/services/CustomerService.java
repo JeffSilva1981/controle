@@ -1,10 +1,12 @@
 package com.jsoftwar.controle.de.pedidos.services;
 
 import com.jsoftwar.controle.de.pedidos.DTO.CustomerDTO;
-import com.jsoftwar.controle.de.pedidos.controllers.handlers.CustomerNotFoundException;
 import com.jsoftwar.controle.de.pedidos.entities.Customer;
 import com.jsoftwar.controle.de.pedidos.repositories.CustomerRepository;
+import com.jsoftwar.controle.de.pedidos.services.exceptions.DatabaseException;
+import com.jsoftwar.controle.de.pedidos.services.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,8 @@ public class CustomerService {
 
     @Transactional(readOnly = true)
     public CustomerDTO findById(Long id){
-        Customer customer = customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Recurso não encontrado"));
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new com.jsoftwar.controle.de.pedidos.services.exceptions.
+                EntityNotFoundException("Entity not Found" + id));
         return new CustomerDTO(customer);
     }
 
@@ -45,16 +48,22 @@ public class CustomerService {
             entity = customerRepository.save(entity);
             return new CustomerDTO(entity);
         }catch (RuntimeException e){
-            throw new CustomerNotFoundException("Id do cliente não encontrado");
+            throw new com.jsoftwar.controle.de.pedidos.services.exceptions.
+                    EntityNotFoundException("Entity not Found" + id);
         }
     }
 
     public void delete(Long id) {
         if (!customerRepository.existsById(id)){
-            throw new CustomerNotFoundException("Id do cliente não encontrado");
+            throw new com.jsoftwar.controle.de.pedidos.services.exceptions.
+                    EntityNotFoundException("Entity not Found" + id);
+        }
+        try {
+            customerRepository.deleteById(id);
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException("Integrity Violation");
         }
 
-        customerRepository.deleteById(id);
     }
 
     private void copyDTOtoEntity(CustomerDTO dto, Customer entity) {

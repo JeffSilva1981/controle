@@ -28,6 +28,10 @@ public class OrderItem {
 
     }
 
+    //Precisei criar este construtor para não da erro. analisar depois se é necessário mesmo.
+    public OrderItem(OrderItem orderItem) {
+    }
+
     public Long getId() {
         return id;
     }

@@ -19,7 +19,7 @@ public class Product {
     private String image;
     private Integer limitPerCustomer;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems;
 
     public Product(){
