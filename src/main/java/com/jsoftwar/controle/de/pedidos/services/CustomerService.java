@@ -2,6 +2,8 @@ package com.jsoftwar.controle.de.pedidos.services;
 
 import com.jsoftwar.controle.de.pedidos.DTO.CustomerDTO;
 import com.jsoftwar.controle.de.pedidos.entities.Customer;
+import com.jsoftwar.controle.de.pedidos.entities.Role;
+import com.jsoftwar.controle.de.pedidos.projections.UserDetailsProjection;
 import com.jsoftwar.controle.de.pedidos.repositories.CustomerRepository;
 import com.jsoftwar.controle.de.pedidos.services.exceptions.DatabaseException;
 import com.jsoftwar.controle.de.pedidos.services.exceptions.EntityNotFoundException;
@@ -9,11 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
-public class CustomerService {
+public class CustomerService implements UserDetailsService {
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -71,5 +78,22 @@ public class CustomerService {
         entity.setCellPhone(dto.getCellPhone());
         entity.setImage(dto.getImage());
 
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        List<UserDetailsProjection> result = customerRepository.searchUserAndRolesByEmail(username);
+        if (result.size() == 0){
+            throw new UsernameNotFoundException("User not found");
+        }
+        Customer customer = new Customer();
+        customer.setCellPhone(username);
+        customer.setPassword(result.get(0).getPassword());
+
+        for (UserDetailsProjection projection : result){
+            customer.addRole(new Role(projection.getRoleId(), projection.getAuthority()));
+        }
+
+        return customer;
     }
 }

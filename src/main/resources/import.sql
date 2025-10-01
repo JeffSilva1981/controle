@@ -1,13 +1,14 @@
-INSERT INTO tb_customers (name, cell_phone, image) VALUES ('Rodolfo', '1598875-1522', 'Httpp://image.perfil.clienterodolfo');
-INSERT INTO tb_customers (name, cell_phone, image) VALUES ('Joao Castanho', '1598875-1523', 'Http://image.perfil.clientejoaocastanho');
-INSERT INTO tb_customers (name, cell_phone, image) VALUES ('Lucas Makino', '1598875-1524', 'Http://image.perfil.clientelucasmakino');
-INSERT INTO tb_customers (name, cell_phone, image) VALUES ('Jésse', '1598875-1525', 'Http://image.perfil.clientejesse');
-INSERT INTO tb_customers (name, cell_phone, image) VALUES ('Vitor', '1598875-1526', 'Http://image.perfil.clientevitor');
-INSERT INTO tb_customers (name, cell_phone, image) VALUES ('Willian', '1598875-1527', 'Http://image.perfil.clientewillian');
-INSERT INTO tb_customers (name, cell_phone, image) VALUES ('Fábio', '1598875-1528', 'Http://image.perfil.clientefabio');
-INSERT INTO tb_customers (name, cell_phone, image) VALUES ('Hélio', '1598875-1529', 'Http://image.perfil.clientehelio');
-INSERT INTO tb_customers (name, cell_phone, image) VALUES ('Giovanni', '1598875-1530', 'Http://image.perfil.clientegiovanni');
-INSERT INTO tb_customers (name, cell_phone, image) VALUES ('Renan', '1598875-1531', 'Http://image.perfil.clienterenan');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('Renan', '1598875-1551', 'http://image.perfil.clienterenan', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('Mariana', '1198765-4321', 'http://image.perfil.clientemariana', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('Carlos', '1199123-4567', 'http://image.perfil.clientecarlos', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('Fernanda', '2198877-1122', 'http://image.perfil.clientefernanda', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('João', '2199000-3344', 'http://image.perfil.clientejoao', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('Patrícia', '3199888-5566', 'http://image.perfil.clientepatricia', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('André', '4199777-7788', 'http://image.perfil.clienteandre', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('Beatriz', '5199666-8899', 'http://image.perfil.clientebeatriz', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('Rafael', '6199555-6677', 'http://image.perfil.clienterafael', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('Juliana', '7199444-2233', 'http://image.perfil.clientejuliana', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
+INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('Renan', '1598875-1531', 'Http://image.perfil.clienterenan', '$2a$10$bbMvN97ZieEq8.DclJMTh.Ykhp0QjszYL1JIG5MLrnes5yDZe0dyW');
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_OPERATOR');
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
@@ -18,12 +19,8 @@ INSERT INTO tb_customers_role (customer_id, role_id) VALUES (2, 2);
 
 
 INSERT INTO tb_orders (order_date, status, total_value, proof_of_payment, customer_id) VALUES ('2025-09-16 14:30:00', 'PAID', 250.75, 'http://image.proof/payment123.png', 1);
-INSERT INTO tb_orders (order_date, status, total_value, proof_of_payment, customer_id)
-VALUES ('2025-09-17 10:15:00', 'WAITING_PAYMENT', 150.50, 'http://image.proof/payment124.png', 2);
-
-INSERT INTO tb_orders (order_date, status, total_value, proof_of_payment, customer_id)
-VALUES ('2025-09-18 11:45:00', 'PAID', 300.00, 'http://image.proof/payment125.png', 3);
-
+INSERT INTO tb_orders (order_date, status, total_value, proof_of_payment, customer_id) VALUES ('2025-09-17 10:15:00', 'WAITING_PAYMENT', 150.50, 'http://image.proof/payment124.png', 2);
+INSERT INTO tb_orders (order_date, status, total_value, proof_of_payment, customer_id) VALUES ('2025-09-18 11:45:00', 'PAID', 300.00, 'http://image.proof/payment125.png', 3);
 INSERT INTO tb_orders (order_date, status, total_value, proof_of_payment, customer_id) VALUES ('2025-09-19 09:30:00', 'CANCELED', 75.25, 'http://image.proof/payment126.png', 4);
 INSERT INTO tb_orders (order_date, status, total_value, proof_of_payment, customer_id) VALUES ('2025-09-20 14:00:00', 'PAID', 420.00, 'http://image.proof/payment127.png', 5);
 INSERT INTO tb_orders (order_date, status, total_value, proof_of_payment, customer_id) VALUES ('2025-09-21 16:20:00', 'WAITING_PAYMENT', 180.75, 'http://image.proof/payment128.png', 6);

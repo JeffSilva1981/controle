@@ -1,26 +1,25 @@
 package com.jsoftwar.controle.de.pedidos.entities;
 
 import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_role")
-public class Role implements GrantedAuthority {
+@Table(name = "tb_category")
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String authority;
+    private String name;
 
-    public Role(){
+    public Category(){
 
     }
 
-    public Role(Long id, String authority) {
+    public Category(Long id, String name) {
         this.id = id;
-        this.authority = authority;
+        this.name = name;
     }
 
     public Long getId() {
@@ -31,13 +30,12 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    @Override
-    public String getAuthority() {
-        return authority;
+    public String getName() {
+        return name;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -45,14 +43,14 @@ public class Role implements GrantedAuthority {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Role role = (Role) o;
-        return Objects.equals(id, role.id) && authority.equals(role.authority);
+        Category category = (Category) o;
+        return Objects.equals(id, category.id) && Objects.equals(name, category.name);
     }
 
     @Override
     public int hashCode() {
         int result = Objects.hashCode(id);
-        result = 31 * result + authority.hashCode();
+        result = 31 * result + Objects.hashCode(name);
         return result;
     }
 }

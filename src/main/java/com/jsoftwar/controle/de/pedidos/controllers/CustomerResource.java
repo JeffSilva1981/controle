@@ -14,7 +14,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/customers")
-public class CustomerController {
+public class CustomerResource {
 
     @Autowired
     public CustomerService customerService;
