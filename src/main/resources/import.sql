@@ -13,7 +13,7 @@ INSERT INTO tb_customers (name, cell_phone, image, password) VALUES ('Renan', '1
 INSERT INTO tb_role (authority) VALUES ('ROLE_OPERATOR');
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
 
-INSERT INTO tb_customers_role (customer_id, role_id) VALUES (1, 2);
+INSERT INTO tb_customers_role (customer_id, role_id) VALUES (1, 1);
 INSERT INTO tb_customers_role (customer_id, role_id) VALUES (2, 1);
 INSERT INTO tb_customers_role (customer_id, role_id) VALUES (2, 2);
 

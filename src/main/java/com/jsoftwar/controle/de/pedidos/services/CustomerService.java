@@ -82,7 +82,7 @@ public class CustomerService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<UserDetailsProjection> result = customerRepository.searchUserAndRolesByEmail(username);
+        List<UserDetailsProjection> result = customerRepository.searchUserAndRolesByCellPhone(username);
         if (result.size() == 0){
             throw new UsernameNotFoundException("User not found");
         }

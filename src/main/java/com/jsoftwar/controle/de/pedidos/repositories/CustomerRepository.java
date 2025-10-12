@@ -4,6 +4,7 @@ import com.jsoftwar.controle.de.pedidos.entities.Customer;
 import com.jsoftwar.controle.de.pedidos.projections.UserDetailsProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,5 +21,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     INNER JOIN tb_role ON tb_role.id = tb_customers_role.role_id
     WHERE tb_customers.cell_phone = :cell_phone
     """)
-    List<UserDetailsProjection> searchUserAndRolesByEmail(String email);
+    List<UserDetailsProjection> searchUserAndRolesByCellPhone(@Param("cell_phone") String cellPhone);
 }
